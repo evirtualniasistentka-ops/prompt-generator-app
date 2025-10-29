@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generátor Promptů</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Generátor Promptů</h1>
+            <p class="subtitle">Vytvářej kvalitní prompty pro ChatGPT, Claude a Gemini</p>
+        </header>
+
+        <main class="main-content">
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="aiModel">Vyber AI Model:</label>
+                    <select id="aiModel">
+                        <option value="chatgpt">ChatGPT</option>
+                        <option value="claude">Claude</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="custom">Vlastní</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="topic">Téma:</label>
+                    <input type="text" id="topic" placeholder="Např: Python, Design, Marketing...">
+                </div>
+
+                <div class="form-group">
+                    <label for="level">Úroveň detailu:</label>
+                    <select id="level">
+                        <option value="basic">Základní</option>
+                        <option value="intermediate">Střední</option>
+                        <option value="advanced">Pokročilá</option>
+                        <option value="expert">Expert</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="format">Formát výstupu:</label>
+                    <select id="format">
+                        <option value="text">Text</option>
+                        <option value="list">Seznam</option>
+                        <option value="code">Kód</option>
+                        <option value="table">Tabulka</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="tone">Tón:</label>
+                    <select id="tone">
+                        <option value="professional">Profesionální</option>
+                        <option value="casual">Neformální</option>
+                        <option value="funny">Vtipný</option>
+                        <option value="scientific">Vědecký</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalNotes">Dodatečné poznámky:</label>
+                    <textarea id="additionalNotes" placeholder="Např: Zaměř se na..."></textarea>
+                </div>
+
+                <button id="generateBtn" class="btn-primary">Generuj Prompt</button>
+            </div>
+
+            <div class="output-section">
+                <h2>Generovaný Prompt:</h2>
+                <div id="promptOutput" class="prompt-output">
+                    <p class="placeholder">Tvůj generovaný prompt se zobrazí zde...</p>
+                </div>
+                <div class="button-group">
+                    <button id="copyBtn" class="btn-secondary" disabled>📋 Kopírovat</button>
+                    <button id="downloadBtn" class="btn-secondary" disabled>⬇️ Stáhnout</button>
+                    <button id="shareBtn" class="btn-secondary" disabled>🔗 Sdílet</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Generátor Promptů | Vytvořeno s ❤️</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
