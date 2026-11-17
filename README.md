@@ -7,28 +7,28 @@
 
 ## 📋 Popis
 
-**Generátor Promptů** je moderní webová aplikace, která pomocí generování profesionálních promptů pro různé AI modely. Aplikace je optimalizána pro **web i mobilní zařízení** a poskytuje jednoduchý a přívětivý uživatelský zakúšení.
+**Generátor Promptů** je moderní webová aplikace, která pomáhá vytvářet profesionální prompty pro různé AI modely. Aplikace je optimalizovaná pro **web i mobilní zařízení** a nabízí jednoduché a přívětivé uživatelské prostředí.
 
 ### 🎯 Hlavní vlastnosti:
 
-- ✨ **Podpora více AI modelű**: ChatGPT, Claude, Gemini + vlastní
-- 📱 **Responzivní design**: Perfektně funguje na mobilu, tabletu i na desktopy
+- ✨ **Podpora více AI modelů**: ChatGPT, Claude, Gemini + vlastní
+- 📱 **Responzivní design**: Perfektně funguje na mobilu, tabletu i na počítači
 - 🎨 **Moderní UI**: Tmavé téma s atraktivním designem
-- 🔧 **Flexibilné volby**:
+- 🔧 **Flexibilní volby**:
   - Úroveň detailu (základní, střední, pokročilá, expert)
   - Formát výstupu (text, seznam, kód, tabulka)
   - Tón komunikace (profesionální, neformální, vtipný, vědecký)
 - 📋 **Snadné sdílení**: Kopíruj, stahuj nebo sdílej vygenerované prompty
-- 🚀 **Instantíná generace**: Okamžité výsledky bez zpoždění
+- 🚀 **Okamžité generování**: Výsledky bez čekání
 
 ## 🛠️ Technologie
 
-- **HTML5**: Seman tická struktura
-- **CSS3**: Modernní styly s flexbox/grid a gradientím
-- **JavaScript (ES6+)**: Interaktivná funkcionality
-- **SVG**: Vektorové grafiky a atraktivné pozadí
+- **HTML5**: Sémantická struktura
+- **CSS3**: Moderní styly s flexbox/grid a přechody
+- **JavaScript (ES6+)**: Interaktivní funkce
+- **SVG**: Vektorová grafika a atraktivní pozadí
 
-## 📁 Struktura projektů
+## 📁 Struktura projektu
 
 ```
 prompt-generator-app/
@@ -42,45 +42,45 @@ prompt-generator-app/
 
 ## 🚀 Jak začít
 
-### Lokalnye spuštění
+### Lokální spuštění
 
-1. **Klonuj repozitář**:
+1. **Naklonuj repozitář**:
 ```bash
 git clone https://github.com/evirtualniasistentka-ops/prompt-generator-app.git
 cd prompt-generator-app
 ```
 
 2. **Otevři aplikaci**:
-- Jednoduše otevři soubor `index.html` v prostředí webového prohlížeče
-- Nebo spus ti lokální server:
+- Jednoduše otevři soubor `index.html` ve webovém prohlížeči
+- Nebo spusť lokální server:
 ```bash
 python -m http.server 8000
 # nebo
 python3 -m http.server 8000
 # nebo
-node -g http-server
+npm install -g http-server
 http-server
 ```
 
-3. **Navštiv webové stránky** na `http://localhost:8000` (nebo odpovïdající port)
+3. **Otevři stránku** na `http://localhost:8000` (nebo na odpovídajícím portu)
 
-### Online použítí
+### Online použití
 
 Aplikace je dostupná online přímo z GitHubu Pages:
 - [Generátor Promptů - Live Demo](https://github.com/evirtualniasistentka-ops/prompt-generator-app)
 
 ## 💡 Jak použít
 
-1. **Vyber AI Model**: Zvol si model (ChatGPT, Claude, Gemini nebo vlastní)
-2. **Napš téma**: Zadá co tě zajímá (např. "Python", "Design", "Marketing")
-3. **Nasta v volby**: Vyber úroveň detailu, formát a tón
-4. **Přidej poznámky**: Volně přidej dodatečné pokyny
-5. **Generuj**: Klikni na "Generuj Prompt"
+1. **Vyber AI model**: Zvol si model (ChatGPT, Claude, Gemini nebo vlastní)
+2. **Napiš téma**: Zadej, co tě zajímá (např. „Python“, „Design“, „Marketing“)
+3. **Nastav volby**: Vyber úroveň detailu, formát a tón
+4. **Přidej poznámky**: Volitelně přidej další pokyny
+5. **Generuj**: Klikni na „Generuj Prompt“
 6. **Sdílej**: Kopíruj, stahuj nebo sdílej svůj prompt
 
 ## 🎨 Design
 
-### Barvá Schéma
+### Barevné schéma
 
 ```css
 --primary-color: #6366f1     /* Indigová */
@@ -91,43 +91,43 @@ Aplikace je dostupná online přímo z GitHubu Pages:
 
 ### Responzivita
 
-- **Desktop**: Duší sloupec s formulářem vlevo a výstupy vpravo
-- **Tablet**: Optimalizováno pro středné obrazovky
-- **Mobilní**: Jednobarevá se stávím pod sebou
+- **Počítač**: Dva sloupce – formulář vlevo, výsledek vpravo
+- **Tablet**: Optimalizováno pro střední obrazovky
+- **Mobil**: Jeden sloupec, prvky pod sebou
 
 ## 📖 Příklady výstupů
 
-### ChatGPT - Advanced
-"Proveď hloubkovou analýzu [téma]. Zahrň historii, současnost a budoucnost." ✓
+### ChatGPT – Pokročilá
+„Proveď hloubkovou analýzu [téma]. Zahrň historii, současnost a budoucnost.“ ✓
 
-### Claude - Expert
-"Vypracuj expertní analýzu [téma] s odkazem na nejnovější výzkumy a teorie." ✓
+### Claude – Expert
+„Proveď nuancovanou analýzu [téma] s kritickým zhodnocením.“ ✓
 
-### Gemini - Intermediate
-"Projdi [téma] z více perspektiv s konkrétními příklady." ✓
+### Gemini – Střední
+„Najdi zajímavá fakta a informace o [téma].“ ✓
 
 ## 🤝 Přispívání
 
-Vítyáme příspěvky! Jak to funguje:
+Příspěvky vítáme! Jak na to:
 
-1. **Fork** repozitář
-2. **Vytvoř** feature branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** změny (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** na branch (`git push origin feature/AmazingFeature`)
+1. Udělej **fork** repozitáře
+2. **Vytvoř** novou větev (`git checkout -b feature/AmazingFeature`)
+3. **Commitni** změny (`git commit -m 'Add some AmazingFeature'`)
+4. **Pushni** větev (`git push origin feature/AmazingFeature`)
 5. **Otevři** Pull Request
 
-### Nápady na vyleplení:
+### Nápady na vylepšení:
 
-- [ ] Ukládání oblíblených promptů
-- [ ] Návrh promptů
-- [ ] API integrace pro reálnou generaci
-- [ ] Více jazykové podpory
+- [ ] Ukládání oblíbených promptů
+- [ ] Návrhy promptů
+- [ ] API integrace pro skutečné generování
+- [ ] Podpora více jazyků
 - [ ] Tmavý/světlý režim
-- [ ] Exporty do formátů (PDF, Markdown)
+- [ ] Export do dalších formátů (PDF, Markdown)
 
 ## 📝 Licence
 
-Tento projekt je licencován pod **MIT Licence** - viz soubor [LICENSE](LICENSE) pro detaily.
+Tento projekt je licencován pod **MIT licencí** – podrobnosti najdeš v souboru [LICENSE](LICENSE).
 
 ## 👤 Autor
 
@@ -137,17 +137,17 @@ Tento projekt je licencován pod **MIT Licence** - viz soubor [LICENSE](LICENSE)
 
 ## 🙏 Poděkování
 
-Dik za:
-- Insipraci z moderních AI nástrojů
-- Komunity která používá tyto nástroje
-- Všem příspěvatelům
+Díky za:
+- Inspiraci z moderních AI nástrojů
+- Komunitu, která tyto nástroje používá
+- Všem přispěvatelům
 
 ---
 
 <div align="center">
 
-### ⭐ Pokud se ti projekt líbí, dáj mu hvězdčku!
+### ⭐ Pokud se ti projekt líbí, dej mu hvězdičku!
 
-[⬆ Zpět na účęt](#gener%C3%A1tor-prompt%C5%AF)
+[⬆ Zpět nahoru](#-generátor-promptů)
 
 </div>

@@ -12,7 +12,7 @@ const downloadBtn = document.getElementById('downloadBtn');
 const shareBtn = document.getElementById('shareBtn');
 
 // Event Listeners
-generatBtn.addEventListener('click', generatePrompt);
+generateBtn.addEventListener('click', generatePrompt);
 copyBtn.addEventListener('click', copyPrompt);
 downloadBtn.addEventListener('click', downloadPrompt);
 shareBtn.addEventListener('click', sharePrompt);
@@ -23,7 +23,7 @@ document.addEventListener('input', updateButtonStates);
 // Prompt Templates
 const promptTemplates = {
   chatgpt: {
-    basic: "Napiš krátko a jasně o {topic}",
+    basic: "Napiš krátce a jasně o {topic}",
     intermediate: "Vysvětli detailně {topic}. Zaměř se na klíčové body.",
     advanced: "Proveď hloubkovou analýzu {topic}. Zahrň historii, současnost a budoucnost.",
     expert: "Proveď expertní analýzu {topic} s odkazem na nejnovější výzkumy a teorie."
@@ -31,14 +31,14 @@ const promptTemplates = {
   claude: {
     basic: "Vysvětli {topic} jednoduše",
     intermediate: "Projdi {topic} s příklady a vysvětleními",
-    advanced: "Analyse {topic} z více perspektiv s konkrétními příklady",
+    advanced: "Analyzuj {topic} z více perspektiv s konkrétními příklady",
     expert: "Proveď nuancovanou analýzu {topic} s kritickým zhodnocením"
   },
   gemini: {
     basic: "Kdo, Co, Kde, Kdy, Proč o {topic}",
-    intermediate: "Najdi zajímavé fakty a informace o {topic}",
+    intermediate: "Najdi zajímavá fakta a informace o {topic}",
     advanced: "Vytvoř komplexní přehled {topic} s vizuálním popisem",
-    expert: "Vypracuj výzkumný dokument o {topic} s citatovými zdroji"
+    expert: "Vypracuj výzkumný dokument o {topic} s citovanými zdroji"
   },
   custom: {
     basic: "Řekni mi něco zajímavého o {topic}",
@@ -50,7 +50,7 @@ const promptTemplates = {
 
 function generatePrompt() {
   const aiModel = aiModelSelect.value;
-  const topic = topicInput.value || 'toto téma';
+  const topic = topicInput.value;
   const level = levelSelect.value;
   const format = formatSelect.value;
   const tone = toneSelect.value;
@@ -68,7 +68,7 @@ function generatePrompt() {
     text: 'Odpověz v textové formě.',
     list: 'Odpověz jako seznam odrážek.',
     code: 'Odpověz s příklady kódu.',
-    table: 'Odpověz jako tabulku.'
+    table: 'Odpověz formou tabulky.'
   };
 
   // Add tone instructions
