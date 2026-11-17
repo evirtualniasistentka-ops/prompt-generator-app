@@ -39,6 +39,10 @@ prompt-generator-app/
 └── README.md               # Tento soubor
 ```
 
+## 🌐 Vyzkoušej online
+
+👉 **[evirtualniasistentka-ops.github.io/prompt-generator-app](https://evirtualniasistentka-ops.github.io/prompt-generator-app/)**
+
 ## 🚀 Jak začít
 
 Stačí otevřít soubor `index.html` v prohlížeči. Nebo spustit lokální server:
