@@ -65,19 +65,20 @@ h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -0.0
 
 /* ---------- Přepínač Text / Obrázek ---------- */
 .mode-switch {
-  position: relative; display: inline-grid; grid-template-columns: 1fr 1fr;
+  position: relative; display: inline-grid; grid-template-columns: repeat(3, 1fr);
   padding: 6px; border-radius: 999px;
   background: linear-gradient(160deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25)); border: 1px solid var(--glass-border);
   backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(160%);
   box-shadow: var(--shadow-3d);
 }
 .mode-indicator {
-  position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc(50% - 6px);
+  position: absolute; top: 6px; bottom: 6px; left: 6px; width: calc((100% - 12px) / 3);
   border-radius: 999px; background: var(--navy);
   box-shadow: 0 6px 16px -4px rgba(17, 45, 116, 0.5), inset 0 1px 0 rgba(255,255,255,0.25);
   transition: transform 0.35s cubic-bezier(.2,.8,.2,1);
 }
 .mode-switch[data-mode="image"] .mode-indicator { transform: translateX(100%); }
+.mode-switch[data-mode="words"] .mode-indicator { transform: translateX(200%); }
 .mode-btn {
   position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
   font: 600 1rem 'Montserrat', sans-serif; color: var(--navy);
@@ -206,6 +207,12 @@ input:focus, textarea:focus {
 .chip.file-chip { flex-direction: row; gap: 6px; white-space: nowrap; }
 @media (max-width: 560px) { .file-tip { flex-direction: column; gap: 6px; } }
 
+.how-box {
+  display: flex; gap: 10px; align-items: flex-start; padding: 14px 16px; border-radius: 14px;
+  font-size: 0.9rem; background: rgba(139, 238, 241, 0.22); border: 1px solid rgba(255, 255, 255, 0.85);
+}
+.how-box .ico { margin-top: 2px; }
+
 /* Vnořené okno pro kontext */
 .inner-window {
   border-radius: 14px; overflow: hidden;
@@ -332,7 +339,8 @@ footer a { color: var(--navy); font-weight: 600; }
   .window-body { padding: 18px; }
   .help { margin-left: 0; }
   .opt-row { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .mode-btn { padding: 11px 22px; }
+  .mode-btn { padding: 10px 10px; font-size: 0.88rem; gap: 6px; }
+  .mode-btn .ico { display: none; }
   .titlebar h2 { margin-right: 44px; }
   .btn { flex: 1 1 100%; justify-content: center; }
 }

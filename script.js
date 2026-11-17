@@ -64,6 +64,23 @@
         format: 'text', tone: 'funny', length: 'short'
       }
     ],
+    words: [
+      {
+        label: 'Inzerát na Bazoš',
+        wish: 'Chci prodat staré věci z garáže na Bazoši. Je tam starý kolovrátek, sada nářadí po tátovi a dětské kolo. Nevím, jak napsat inzerát, aby to lidi zaujalo a nepsali mi nesmysly. Fotky nemám moc hezké.',
+        target: 'text'
+      },
+      {
+        label: 'Obrázek na přání',
+        wish: 'Potřebuju obrázek na přání k Vánocům pro sousedy. Něco útulného, zasněžená chaloupka, ale ne kýč. Chci to vytisknout doma na tiskárně.',
+        target: 'image'
+      },
+      {
+        label: 'Omluva na schůzku',
+        wish: 'Musím se omluvit kamarádce, že nepřijdu na sraz ze školy. Nechci, aby to vyznělo, že se mi nechce, mám v ten den hlídání vnoučat. Chci jí to napsat do zprávy na WhatsApp.',
+        target: 'text'
+      }
+    ],
     image: [
       {
         label: 'Levandulová zahrada',
@@ -172,11 +189,39 @@
     return { parts, score: Math.min(score / 9, 1), tip };
   }
 
+  function buildWords() {
+    const wish = clean($('wish').value);
+    const forImage = picks.target === 'image';
+    const parts = [];
+    if (wish) {
+      parts.push({ cls: 'role', tag: 'Instrukce pro AI', text:
+        'Jsi zkušený expert na psaní promptů. Pomoz mi z mého popisu sestavit kvalitní prompt ' +
+        (forImage ? 'pro vytvoření obrázku.' : 'pro AI chat (ChatGPT, Claude nebo Gemini).') });
+      parts.push({ cls: 'format', tag: 'Postup', text:
+        '1. Pokud ti chybí důležité informace, nejdřív se mě na ně zeptej (nejvýš 3–5 otázek) a počkej na odpověď.\n' +
+        '2. Pak sestav hotový prompt, který bude obsahovat ' +
+        (forImage ? 'popis scény, styl, náladu a světlo, barvy, formát obrázku a co na obrázku být nemá.' : 'roli, úkol, kontext, cíl a podobu odpovědi (formu, tón, délku).') + '\n' +
+        '3. Prompt napiš česky do jednoho bloku, abych ho mohla rovnou zkopírovat.\n' +
+        '4. Pod něj stručně a jednoduše vysvětli, proč je takhle sestavený, ať se to naučím.' });
+      parts.push({ cls: 'context', tag: 'Tvůj popis', text: 'Můj popis:\n„' + wish + '“' });
+    }
+    let score = 0;
+    if (wish) score += wish.length > 150 ? 7 : wish.length > 60 ? 5 : 3;
+    if (picks.target) score += 2;
+    let tip;
+    if (!wish) tip = 'Napiš vlastními slovy, co potřebuješ. Klidně dlouze a neučesaně.';
+    else if (wish.length <= 60) tip = 'Přidej ještě pár vět: pro koho to je, k čemu to použiješ a co nechceš.';
+    else if (!picks.target) tip = 'Vyber, jestli chceš prompt na text, nebo na obrázek.';
+    else if (wish.length <= 150) tip = 'Dobré! Čím víc detailů napíšeš, tím méně se tě AI bude muset doptávat.';
+    else tip = 'Výborně! Otevři prompt v ChatGPT nebo Claudovi a nech AI, ať ti ho vyladí.';
+    return { parts, score: Math.min(score / 9, 1), tip };
+  }
+
   // ---------- Vykreslení ----------
   let plainText = '';
 
   function render() {
-    const { parts, score, tip } = mode === 'text' ? buildText() : buildImage();
+    const { parts, score, tip } = mode === 'text' ? buildText() : mode === 'image' ? buildImage() : buildWords();
     const out = $('output');
     out.innerHTML = '';
 
@@ -219,7 +264,7 @@
     const has = parts.length > 0;
     $('copyBtn').disabled = !has;
     setLink($('chatgptLink'), has ? 'https://chatgpt.com/?q=' + encodeURIComponent(plainText) : null);
-    setLink($('claudeLink'), has && mode === 'text' ? 'https://claude.ai/new?q=' + encodeURIComponent(plainText) : null);
+    setLink($('claudeLink'), has && mode !== 'image' ? 'https://claude.ai/new?q=' + encodeURIComponent(plainText) : null);
     $('claudeLink').classList.toggle('hidden', mode === 'image');
   }
 
@@ -298,6 +343,9 @@
       setPick('format', ex.format);
       setPick('tone', ex.tone);
       setPick('length', ex.length);
+    } else if (mode === 'words') {
+      $('wish').value = ex.wish;
+      setPick('target', ex.target);
     } else {
       $('subject').value = ex.subject;
       $('colors').value = ex.colors;
@@ -321,6 +369,7 @@
     });
     $('textForm').classList.toggle('hidden', m !== 'text');
     $('imageForm').classList.toggle('hidden', m !== 'image');
+    $('wordsForm').classList.toggle('hidden', m !== 'words');
     renderExamples();
     render();
   }
@@ -350,12 +399,14 @@
 
   // ---------- Začít znovu ----------
   $('resetBtn').addEventListener('click', () => {
-    const form = mode === 'text' ? $('textForm') : $('imageForm');
+    const form = mode === 'text' ? $('textForm') : mode === 'image' ? $('imageForm') : $('wordsForm');
     form.querySelectorAll('input[type="text"], textarea').forEach((el) => (el.value = ''));
     if (mode === 'text') {
       $('askBack').checked = false;
       $('fileChip').setAttribute('aria-pressed', 'false');
       ['format', 'tone', 'length'].forEach((g) => setPick(g, null));
+    } else if (mode === 'words') {
+      setPick('target', null);
     } else {
       ['style', 'mood', 'ratio'].forEach((g) => setPick(g, null));
     }

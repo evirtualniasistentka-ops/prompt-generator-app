@@ -11,7 +11,7 @@
 
 ### 🎯 Hlavní vlastnosti
 
-- ✍️ **Dva režimy**: prompt pro **text** a prompt pro **obrázek**
+- ✍️ **Tři režimy**: prompt pro **text**, prompt pro **obrázek** a **„Vlastními slovy“** – napíšeš po svém, co potřebuješ, a AI ti z toho sestaví kvalitní prompt i s vysvětlením
 - 🧩 **Postup krok za krokem** (text): role, úkol, kontext, cíl, podoba odpovědi (forma, tón, délka)
 - 🖼️ **Obrázky**: popis, styl, nálada a světlo, barvy, formát a co na obrázku být nemá
 - 📎 **„Mám to v souboru“**: podklady není nutné přepisovat, stačí soubor přiložit v ChatGPT nebo Claudovi
