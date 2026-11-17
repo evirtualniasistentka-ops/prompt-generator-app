@@ -201,7 +201,7 @@
         '1. Pokud ti chybí důležité informace, nejdřív se mě na ně zeptej (nejvýš 3–5 otázek) a počkej na odpověď.\n' +
         '2. Pak sestav hotový prompt, který bude obsahovat ' +
         (forImage ? 'popis scény, styl, náladu a světlo, barvy, formát obrázku a co na obrázku být nemá.' : 'roli, úkol, kontext, cíl a podobu odpovědi (formu, tón, délku).') + '\n' +
-        '3. Prompt napiš česky do jednoho bloku, abych ho mohla rovnou zkopírovat.\n' +
+        '3. Prompt napiš česky do jednoho bloku, ať ho jde rovnou zkopírovat.\n' +
         '4. Pod něj stručně a jednoduše vysvětli, proč je takhle sestavený, ať se to naučím.' });
       parts.push({ cls: 'context', tag: 'Tvůj popis', text: 'Můj popis:\n„' + wish + '“' });
     }
