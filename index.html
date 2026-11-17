@@ -1,91 +1,251 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generátor Promptů</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generátor promptů</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🤖 Generátor Promptů</h1>
-            <p class="subtitle">Vytvářej kvalitní prompty pro ChatGPT, Claude a Gemini</p>
-        </header>
+  <div class="bg" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <span class="blob b4"></span>
+    <span class="twigs"></span>
+    <span class="grain"></span>
+  </div>
 
-        <main class="main-content">
-            <div class="form-section">
-                <div class="form-group">
-                    <label for="aiModel">Vyber AI Model:</label>
-                    <select id="aiModel">
-                        <option value="chatgpt">ChatGPT</option>
-                        <option value="claude">Claude</option>
-                        <option value="gemini">Gemini</option>
-                        <option value="custom">Vlastní</option>
-                    </select>
-                </div>
+  <div class="page">
+    <header class="hero">
+      <h1>Generátor promptů</h1>
+      <p class="lead">Pro začátečníky, kteří se učí psát zadání pro umělou inteligenci. Vyplň, co víš, a prompt se ti poskládá sám.</p>
 
-                <div class="form-group">
-                    <label for="topic">Téma:</label>
-                    <input type="text" id="topic" placeholder="Např: Python, Design, Marketing...">
-                </div>
+      <div class="mode-switch" role="tablist" aria-label="Co chceš vytvořit">
+        <span class="mode-indicator" aria-hidden="true"></span>
+        <button type="button" role="tab" class="mode-btn active" data-mode="text" aria-selected="true">
+          <svg viewBox="0 0 24 24" class="ico"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          Text
+        </button>
+        <button type="button" role="tab" class="mode-btn" data-mode="image" aria-selected="false">
+          <svg viewBox="0 0 24 24" class="ico"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/></svg>
+          Obrázek
+        </button>
+      </div>
+    </header>
 
-                <div class="form-group">
-                    <label for="level">Úroveň detailu:</label>
-                    <select id="level">
-                        <option value="basic">Základní</option>
-                        <option value="intermediate">Střední</option>
-                        <option value="advanced">Pokročilá</option>
-                        <option value="expert">Expert</option>
-                    </select>
-                </div>
+    <main class="layout">
+      <!-- SESTAVOVÁNÍ -->
+      <section class="window builder" aria-labelledby="builderTitle">
+        <div class="titlebar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <h2 id="builderTitle">Sestav si prompt</h2>
+        </div>
 
-                <div class="form-group">
-                    <label for="format">Formát výstupu:</label>
-                    <select id="format">
-                        <option value="text">Text</option>
-                        <option value="list">Seznam</option>
-                        <option value="code">Kód</option>
-                        <option value="table">Tabulka</option>
-                    </select>
-                </div>
+        <div class="window-body">
+          <div class="examples">
+            <p class="examples-label">Nevíš, jak začít? Vyzkoušej příklad:</p>
+            <div class="chips" id="examples"></div>
+          </div>
 
-                <div class="form-group">
-                    <label for="tone">Tón:</label>
-                    <select id="tone">
-                        <option value="professional">Profesionální</option>
-                        <option value="casual">Neformální</option>
-                        <option value="funny">Vtipný</option>
-                        <option value="scientific">Vědecký</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="additionalNotes">Dodatečné poznámky:</label>
-                    <textarea id="additionalNotes" placeholder="Např: Zaměř se na..."></textarea>
-                </div>
-
-                <button id="generateBtn" class="btn-primary">Generuj Prompt</button>
+          <!-- TEXTOVÝ REŽIM -->
+          <form id="textForm" class="form" autocomplete="off" onsubmit="return false">
+            <div class="field">
+              <label for="role"><span class="num c-role">1</span> Kdo má AI být?</label>
+              <p class="help">Když AI řekneš, v jaké roli má mluvit, odpovídá jako odborník.</p>
+              <input type="text" id="role" placeholder="např. zkušená kuchařka">
+              <div class="chips small" data-fill="role">
+                <button type="button" class="chip" data-value="zkušená kuchařka">kuchařka</button>
+                <button type="button" class="chip" data-value="trpělivý učitel, který vysvětluje jednoduše">trpělivý učitel</button>
+                <button type="button" class="chip" data-value="cestovní poradce">cestovní poradce</button>
+                <button type="button" class="chip" data-value="zkušená zahradnice">zahradnice</button>
+                <button type="button" class="chip" data-value="pečlivá asistentka, která píše srozumitelně">asistentka</button>
+              </div>
             </div>
 
-            <div class="output-section">
-                <h2>Generovaný Prompt:</h2>
-                <div id="promptOutput" class="prompt-output">
-                    <p class="placeholder">Tvůj generovaný prompt se zobrazí zde...</p>
-                </div>
-                <div class="button-group">
-                    <button id="copyBtn" class="btn-secondary" disabled>📋 Kopírovat</button>
-                    <button id="downloadBtn" class="btn-secondary" disabled>⬇️ Stáhnout</button>
-                    <button id="shareBtn" class="btn-secondary" disabled>🔗 Sdílet</button>
-                </div>
+            <div class="field">
+              <label for="task"><span class="num c-task">2</span> Co má udělat? <em class="badge soft-badge">začni tady</em></label>
+              <p class="help">Napiš to jednou větou, jako bys o to žádala kamarádku.</p>
+              <textarea id="task" rows="2" placeholder="např. Navrhni mi 3 rychlé večeře z toho, co mám doma"></textarea>
             </div>
-        </main>
 
-        <footer>
-            <p>&copy; 2025 Generátor Promptů | Vytvořeno s ❤️</p>
-        </footer>
-    </div>
+            <div class="field">
+              <label for="context"><span class="num c-context">3</span> Kontext <em class="badge">nejdůležitější</em></label>
+              <p class="help">Pro koho to je? Co už víš? Co nechceš? Čím víc toho AI ví, tím lépe odpoví.</p>
+              <div class="inner-window">
+                <div class="inner-bar"><span class="dots mini"><i></i><i></i><i></i></span><span>kontext.txt</span></div>
+                <textarea id="context" rows="6" placeholder="např. Mám doma vejce, brambory, cibuli a sýr. Vařím pro dva a máme jen 30 minut. Manžel nejí houby."></textarea>
+              </div>
+              <div class="file-tip">
+                <button type="button" class="chip file-chip" id="fileChip" aria-pressed="false">
+                  <svg viewBox="0 0 24 24" class="ico"><path d="m21 12-8.5 8.5a5 5 0 0 1-7-7L14 5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4L15.5 8"/></svg>
+                  Mám to v souboru
+                </button>
+                <p>Máš podklady v dokumentu, e-mailu nebo tabulce? Nemusíš je sem přepisovat. Klikni na tlačítko a soubor pak přilož přímo v ChatGPT nebo Claudovi přes sponku nebo +.</p>
+              </div>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="field">
+              <label for="goal"><span class="num c-goal">4</span> Cíl</label>
+              <p class="help">K čemu výsledek použiješ? Co chceš, aby se díky tomu stalo?</p>
+              <input type="text" id="goal" placeholder="např. Aby si výlet užily děti i babička">
+            </div>
+
+            <div class="field">
+              <span class="label"><span class="num c-format">5</span> Jak má odpověď vypadat?</span>
+              <p class="help">Klikni, co chceš. Nemusíš nic, AI si poradí.</p>
+
+              <div class="options">
+                <div class="opt-row">
+                  <span class="opt-label">Forma</span>
+                  <div class="chips soft" data-group="format">
+                    <button type="button" class="chip" data-value="text">text</button>
+                    <button type="button" class="chip" data-value="list">v bodech</button>
+                    <button type="button" class="chip" data-value="steps">krok za krokem</button>
+                    <button type="button" class="chip" data-value="table">tabulka</button>
+                  </div>
+                </div>
+                <div class="opt-row">
+                  <span class="opt-label">Tón</span>
+                  <div class="chips soft" data-group="tone">
+                    <button type="button" class="chip" data-value="friendly">přátelsky</button>
+                    <button type="button" class="chip" data-value="formal">úředně</button>
+                    <button type="button" class="chip" data-value="funny">s humorem</button>
+                    <button type="button" class="chip" data-value="simple">jednoduše</button>
+                  </div>
+                </div>
+                <div class="opt-row">
+                  <span class="opt-label">Délka</span>
+                  <div class="chips soft" data-group="length">
+                    <button type="button" class="chip" data-value="short">krátce</button>
+                    <button type="button" class="chip" data-value="medium">středně</button>
+                    <button type="button" class="chip" data-value="long">podrobně</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <label class="toggle">
+              <input type="checkbox" id="askBack">
+              <span class="switch" aria-hidden="true"></span>
+              <span>Ať se mě AI nejdřív doptá, když jí něco chybí <small>(skvělý trik)</small></span>
+            </label>
+          </form>
+
+          <!-- OBRÁZKOVÝ REŽIM -->
+          <form id="imageForm" class="form hidden" autocomplete="off" onsubmit="return false">
+            <div class="field">
+              <label for="subject"><span class="num c-task">1</span> Co má být na obrázku?</label>
+              <p class="help">Popiš to, jako bys to vyprávěla malíři: co tam je, kde to je, co se děje.</p>
+              <div class="inner-window">
+                <div class="inner-bar"><span class="dots mini"><i></i><i></i><i></i></span><span>popis.txt</span></div>
+                <textarea id="subject" rows="4" placeholder="např. Dřevěná lavička v zahradě plné levandule, na lavičce hrnek čaje a otevřená kniha"></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="label"><span class="num c-role">2</span> Styl</span>
+              <div class="chips" data-group="style">
+                <button type="button" class="chip" data-value="jemný akvarel">akvarel</button>
+                <button type="button" class="chip" data-value="realistická fotografie">fotografie</button>
+                <button type="button" class="chip" data-value="kreslená ilustrace">kreslená ilustrace</button>
+                <button type="button" class="chip" data-value="olejomalba">olejomalba</button>
+                <button type="button" class="chip" data-value="roztomilý 3D styl">3D</button>
+                <button type="button" class="chip" data-value="jednoduchá minimalistická ilustrace">minimalistický</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <span class="label"><span class="num c-context">3</span> Nálada a světlo</span>
+              <div class="chips" data-group="mood">
+                <button type="button" class="chip" data-value="jemné ranní světlo">ráno</button>
+                <button type="button" class="chip" data-value="teplé světlo při západu slunce">západ slunce</button>
+                <button type="button" class="chip" data-value="útulná a klidná atmosféra">útulně</button>
+                <button type="button" class="chip" data-value="svěží, jasná a veselá">vesele</button>
+                <button type="button" class="chip" data-value="tajemná, mlhavá atmosféra">tajemně</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="colors"><span class="num c-format">4</span> Barvy</label>
+              <input type="text" id="colors" placeholder="např. pastelové, hlavně fialová a zelená">
+            </div>
+
+            <div class="field">
+              <span class="label"><span class="num c-format">5</span> Formát</span>
+              <div class="chips" data-group="ratio">
+                <button type="button" class="chip" data-value="square">čtverec<small>příspěvek</small></button>
+                <button type="button" class="chip" data-value="portrait">na výšku<small>Instagram</small></button>
+                <button type="button" class="chip" data-value="landscape">na šířku<small>úvodní fotka</small></button>
+                <button type="button" class="chip" data-value="story">story<small>mobil</small></button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="negative"><span class="num c-neg">6</span> Co tam být nemá?</label>
+              <p class="help">AI ráda přidává texty a nápisy. Tady jí to můžeš zakázat.</p>
+              <input type="text" id="negative" placeholder="např. žádný text, žádní lidé">
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- VÝSLEDEK -->
+      <section class="window result" aria-labelledby="resultTitle">
+        <div class="titlebar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <h2 id="resultTitle">Tvůj prompt</h2>
+        </div>
+
+        <div class="window-body">
+          <div class="meter">
+            <div class="meter-head">
+              <span>Síla promptu</span>
+              <strong id="meterLabel">Zatím prázdný</strong>
+            </div>
+            <div class="meter-track"><span id="meterBar"></span></div>
+            <p class="meter-tip" id="meterTip">
+              <svg viewBox="0 0 24 24" class="ico"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.7.7 1 1.5 1 2.5h6c0-1 .3-1.8 1-2.5A6 6 0 0 0 12 3Z"/></svg>
+              <span>Začni tím, co má AI udělat.</span>
+            </p>
+          </div>
+
+          <div class="output" id="output" aria-live="polite">
+            <p class="placeholder">Tady se ti bude skládat prompt. Každá barevná část ukazuje, z čeho se dobrý prompt skládá.</p>
+          </div>
+
+          <div class="actions">
+            <button type="button" class="btn primary" id="copyBtn" disabled>
+              <svg viewBox="0 0 24 24" class="ico"><rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>
+              Kopírovat
+            </button>
+            <a class="btn" id="chatgptLink" href="#" target="_blank" rel="noopener" aria-disabled="true">
+              <svg viewBox="0 0 24 24" class="ico"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>
+              Otevřít v ChatGPT
+            </a>
+            <a class="btn" id="claudeLink" href="#" target="_blank" rel="noopener" aria-disabled="true">
+              <svg viewBox="0 0 24 24" class="ico"><path d="M14 4h6v6M20 4l-9 9M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/></svg>
+              Otevřít v Claude
+            </a>
+          </div>
+          <p class="status" id="status" role="status"></p>
+
+          <button type="button" class="reset" id="resetBtn">
+            <svg viewBox="0 0 24 24" class="ico"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
+            Začít znovu
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Generátor promptů · Eva Cenklová · <a href="https://cenklova.cz" target="_blank" rel="noopener">cenklova.cz</a></p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
