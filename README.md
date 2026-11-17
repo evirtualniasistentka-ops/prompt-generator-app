@@ -41,7 +41,7 @@ prompt-generator-app/
 
 ## 🌐 Vyzkoušej online
 
-👉 **[evirtualniasistentka-ops.github.io/prompt-generator-app](https://evirtualniasistentka-ops.github.io/prompt-generator-app/)**
+👉 **[generator.cenklova.cz](https://generator.cenklova.cz)**
 
 ## 🚀 Jak začít
 
